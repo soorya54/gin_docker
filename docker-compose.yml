@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: bash -c "go run gin_docker/src/app"
+    volumes:
+      - .:/go/src/gin_docker
+    ports:
+      - "8080:8080"
