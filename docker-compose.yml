@@ -3,7 +3,8 @@ version: '3'
 services:
   web:
     build: .
-    command: bash -c "go run gin_docker/src/app"
+    # command: bash -c "go run gin_docker"
+    command: bash -c "air"
     volumes:
       - .:/go/src/gin_docker
     ports:
