@@ -1,6 +1,8 @@
 package main
 
 import (
+	"gin_docker/controllers"
+	"gin_docker/db"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -19,12 +21,18 @@ func main() {
 	// Init gin router
 	router := gin.Default()
 
-	// v1 := router.Group("/api/v1")
-	// {
-	// 	hello := new(controllers.HelloWorldController)
+	db := db.SetupModels() // new// Provide db variable to controllers
+	router.Use(func(c *gin.Context) {
+		c.Set("db", db)
+		c.Next()
+	})
 
-	// 	v1.GET("/hello", hello.sampleHelloAPI)
-	// }
+	v1 := router.Group("/api/v1")
+	{
+		hello := new(controllers.HelloWorldController)
+
+		v1.GET("/hello", hello.SampleHelloApi)
+	}
 
 	// Handle error response when a route is not defined
 	router.NoRoute(func(c *gin.Context) {
