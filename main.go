@@ -37,7 +37,7 @@ func main() {
 	// Handle error response when a route is not defined
 	router.NoRoute(func(c *gin.Context) {
 		// In gin this is how you return a JSON response
-		c.JSON(404, gin.H{"message": "Not fodund"})
+		c.JSON(404, gin.H{"message": "404 Not found"})
 	})
 
 	// Init our server
