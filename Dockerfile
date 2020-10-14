@@ -7,11 +7,15 @@ WORKDIR /go/src/gin_docker
 
 COPY . /go/src/gin_docker
 
-RUN go get -d -v ./...
-RUN go install -v ./...
+# RUN go get -d -v ./...
+# RUN go install -v ./...
 
 # RUN go build gin_docker
 
 RUN go get -u github.com/cosmtrek/air
+
+# RUN go mod init /go/src/gin_docker
+
+RUN go mod tidy
 
 EXPOSE $PORT
